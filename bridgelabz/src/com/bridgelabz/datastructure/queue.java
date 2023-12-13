@@ -1,46 +1,72 @@
 package com.bridgelabz.datastructure;
 import java.util.*;
 
-class nodeofLL{
-	int data;
-	nodeofLL next;
-	nodeofLL(int data,nodeofLL next){
+class Node<T>{
+	T data;
+	Node<T> next;
+	Node(T data,Node<T> next){
 		this.data = data;
 		this.next = next;
 	}
-	nodeofLL(int data){
+	Node(T data){
 		this.data = data;
 		next = null;
 	}
 }
-public class queue {
-	nodeofLL front = null;
-	nodeofLL rear = null;
+
+class Queue<T>
+{
+	Node<T> front = null;
+	Node<T> rear = null;
 	int size = 0;
-	
+	/*
+     * @desc:This method returns size of queue
+     * @param:none
+     * @return:int-->size of linked-list
+    */
     int size()
     {
     	return size;
     }
+    /*
+     * @desc:This method checks if queue is empty or not
+     * @param:none
+     * @return:boolean
+    */
     boolean isEmpty()
     {
     	return (size==0);
     }
-    Integer front()
+    /*
+     * @desc:This method returns front element of queue
+     * @param:none
+     * @return:Front element
+    */
+    T front()
     {
     	if(front==null)
     		return null;
     	return front.data;
     }
-    Integer rear()
+    /*
+     * @desc:This method returns rear element of queue
+     * @param:none
+     * @return:Rear element
+    */
+    T rear()
     {
     	if(rear==null)
     		return null;
     	return rear.data;
     }
-    void enqueue(int elem)
+    /*
+     * @desc:This method adds an element in the queue
+     * @param:Element to be added
+     * @return:void
+    */
+    void enqueue(T elem)
     {
-    	nodeofLL newnode = new nodeofLL(elem);
+    	Node<T> newnode = new Node<T>(elem);
     	if(front==null)
     	{
     		front = newnode;
@@ -53,19 +79,29 @@ public class queue {
     	}
     	size++;
     }
-    Integer dequeue()
+    /*
+     * @desc:This method removes an element from the queue
+     * @param:none
+     * @return:the removed element
+    */
+    T dequeue()
     {
     	if(isEmpty())
     		return null;
-    	int temp = front.data;
+    	T temp = front.data;
     	front = front.next;
     	size--;
     	return temp;
     }
+    /*
+     * @desc:This method prints the queue
+     * @param:none
+     * @return:void
+    */
     void printQueue()
     {
     	System.out.print("Front--> ");
-    	nodeofLL temp = front;
+    	Node<T> temp = front;
     	while(temp!=null)
     	{
     		System.out.print(temp.data+" ");
@@ -73,6 +109,11 @@ public class queue {
     	}
     	System.out.println("<--Rear");
     }
+}
+
+
+public class queue {
+
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Operations:\n1.Enqueue\n"
@@ -83,7 +124,7 @@ public class queue {
 				+ "6.IsEmpty\n"
 				+ "7.Print queue\n"
 				+  "Choose : ");
-		queue q = new queue();
+		Queue<Integer> q = new Queue<>();
 		int choice = s.nextInt();
 		while(choice!=-1)
 		{
